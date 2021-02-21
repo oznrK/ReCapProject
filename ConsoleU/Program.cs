@@ -1,8 +1,9 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete.InMemory;
+using Entities.Concrete;
 using System;
 
-namespace ConsoleU
+namespace ConsoleUI
 {
     class Program
     {
@@ -14,6 +15,8 @@ namespace ConsoleU
                 Console.WriteLine(car.CarName+" = "+ car.DailyPrice);
                 
             }
+            carManager.Add(new Car { CarId = 5, BrandId = 6, BrandName = "Audi", ColorId = 2, DailyPrice = 150, ModelYear = 2020, CarName = "A5", Description = " otomatik vites" });
+            
         }
     }
 }
