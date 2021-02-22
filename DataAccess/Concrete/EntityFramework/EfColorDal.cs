@@ -1,17 +1,18 @@
-﻿using DataAccess.Abstract;
-using Entities.Concrete;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Microsoft.EntityFrameworkCore;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Linq;
 
 namespace DataAccess.Concrete.Entity_Framework
 {
-    public class EfBrandDal : IBrandDal
+    public class EfColorDal : EfEntityRepositoryBase<Color, ReCapProjectContext>, IColorDal
     {
-        public void Add(Brand entity)
+        public void Add(Color entity)
         {
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
@@ -21,7 +22,9 @@ namespace DataAccess.Concrete.Entity_Framework
             }
         }
 
-        public void Delete(Brand entity)
+
+
+        public void Delete(Color entity)
         {
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
@@ -31,25 +34,19 @@ namespace DataAccess.Concrete.Entity_Framework
             }
         }
 
-        public Brand Get(Expression<Func<Brand, bool>> filter)
+
+
+        public Color Get(Expression<Func<Color, bool>> filter)
         {
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
-                return context.Set<Brand>().SingleOrDefault(filter);
+                return context.Set<Color>().SingleOrDefault(filter);
             }
+           
         }
 
-        public List<Brand> GetAll(Expression<Func<Brand, bool>> filter = null)
-        {
-            using (ReCapProjectContext context = new ReCapProjectContext())
-            {
-                return filter == null
-                    ? context.Set<Brand>().ToList()
-                    : context.Set<Brand>().Where(filter).ToList();
-            }
-        }
 
-        public void Update(Brand entity)
+        public void Update(Color entity)
         {
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
@@ -58,5 +55,6 @@ namespace DataAccess.Concrete.Entity_Framework
                 context.SaveChanges();
             }
         }
-}
+
+    }
 }

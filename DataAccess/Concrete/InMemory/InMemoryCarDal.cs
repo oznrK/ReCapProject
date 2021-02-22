@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,11 @@ namespace DataAccess.Concrete.InMemory
         public List<Car> GetAllByColorId(int colorId)
         {
             return _cars.Where(c => c.ColorId == colorId).ToList(); //where=>içindeki şarta uyan bütün elemanları yeni bir liste haline getirip onu döndürür. 
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(Car car)

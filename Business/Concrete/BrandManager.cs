@@ -35,13 +35,14 @@ namespace Business.Concrete
 
         public List<Brand> GetAll()
         {
-            throw new NotImplementedException();
+            return _brandDal.GetAll();
         }
 
-        public Brand GetById(int id)
+        public Brand GetById(int brandId)
         {
-            return _brandDal.Get(c => c.BrandId == id);
+            return _brandDal.Get(c => c.BrandId == brandId);
         }
+
 
         public void Update(Brand brand)
         {

@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,9 +10,9 @@ using System.Text;
 
 namespace DataAccess.Concrete.Entity_Framework
 {
-    public class EfCarDal : ICarDal
+    public class EfBrandDal : EfEntityRepositoryBase<Brand, ReCapProjectContext>, IBrandDal
     {
-        public void Add(Car entity)
+        public void Add(Brand entity)
         {
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
@@ -21,7 +22,7 @@ namespace DataAccess.Concrete.Entity_Framework
             }
         }
 
-        public void Delete(Car entity)
+        public void Delete(Brand entity)
         {
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
@@ -31,35 +32,25 @@ namespace DataAccess.Concrete.Entity_Framework
             }
         }
 
-        public Car Get(Expression<Func<Car, bool>> filter)
+        public Brand Get(Expression<Func<Brand, bool>> filter)
         {
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
-                return context.Set<Car>().SingleOrDefault(filter);
+                return context.Set<Brand>().SingleOrDefault(filter);
             }
         }
 
-        
-
-        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
+        public List<Brand> GetAll(Expression<Func<Brand, bool>> filter = null)
         {
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
-                return filter == null ? context.Set<Car>().ToList() : context.Set<Car>().Where(filter).ToList();
+                return filter == null
+                    ? context.Set<Brand>().ToList()
+                    : context.Set<Brand>().Where(filter).ToList();
             }
         }
 
-        public List<Car> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Car> GetAllByColorId(int colorId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Car entity)
+        public void Update(Brand entity)
         {
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
@@ -68,5 +59,5 @@ namespace DataAccess.Concrete.Entity_Framework
                 context.SaveChanges();
             }
         }
-    }
+}
 }
