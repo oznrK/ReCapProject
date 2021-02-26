@@ -1,5 +1,7 @@
 ﻿using Business.Concrete;
+using Business.Constants;
 using DataAccess.Concrete.Entity_Framework;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
@@ -10,10 +12,33 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarTest();
-            BrandList();
+            //CarTest();
+            //BrandList();
 
+            RentCarTest();
 
+        }
+
+        private static void RentCarTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            CarManager carManager = new CarManager(new EfCarDal());
+            string kontrol = "";
+
+            foreach (var rental in carManager.GetAll().Data)
+            {
+                var selectedCar = rentalManager.Add(new Rental { CarId = rental.CarId, CustomerId = 3, RentDate = "26.02.2021" });
+                if (selectedCar.Success == true)
+                {
+                    //döngüyü bitir
+                    kontrol = "araç bulundu";
+                    Console.WriteLine(selectedCar.Message);
+                    break;
+
+                }
+            }
+
+            if (kontrol == "") { Console.WriteLine("boşta araç bulunmadı"); }
         }
 
         private static void BrandList()

@@ -50,10 +50,7 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public List<TEntity> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public List<TEntity> GetAllByColorId(int colorId)
         {
