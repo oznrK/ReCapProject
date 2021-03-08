@@ -19,20 +19,10 @@ namespace Business.Concrete
            
         }
 
+        //validator!!
         public IResult Add(Rental rental)
         {
-            //var cars = _carDal.GetAll();
-            //var selectedcar = new Car();
-            //foreach (var item in cars)
-            //{
-            //    var car = _rentalDal.Get(r => r.CarId == item.CarId && r.ReturnDate == null);
-            //    if (car == null) { selectedcar = item; break; }
-            //}
-            //if (selectedcar != null) {
-            //    rental.CarId = selectedcar.CarId; 
-            //    _rentalDal.Add(rental);
-            //    return new SuccessResult(Messages.RentalAdded);
-            //} 
+           
             var result = _rentalDal.Get(r => r.CarId == rental.CarId && r.ReturnDate == null);
             if (result==null)
             {
